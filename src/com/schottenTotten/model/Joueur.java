@@ -9,20 +9,44 @@ import java.util.ArrayList;
 
 public class Joueur{
 
+    private int numeroJoueur;
+    private String pseudo;
+
+    public Joueur(int numeroJoueur, String pseudo) {
+        this.numeroJoueur = numeroJoueur;
+        this.pseudo = pseudo;
+    }
+
     public static List<Carte> MainJoueur(List<Carte> pioche) {
-    if (pioche.size() < 6) {
-      throw new IllegalArgumentException("Pas assez de cartes dans la pioche");
+        if (pioche.size() < 6) {
+        throw new IllegalArgumentException("Pas assez de cartes dans la pioche");
+        }
+
+        List<Carte> main = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++) {
+            Carte carte = pioche.remove(0);
+            main.add(carte);
+        }
+
+        return main;
+
     }
 
-    List<Carte> main = new ArrayList<>();
+    public void PoserCarte(Borne borne, Carte carte, List<Carte> main, List<Carte> pioche) {
 
-    for (int i = 0; i < 6; i++) {
-        Carte carte = pioche.remove(0);
-        main.add(carte);
-    }
-
-    return main;
-
+        if (!main.contains(carte)) {
+            throw new IllegalArgumentException("Cette carte n'est pas dans la main du joueur");
+        }
+    
+        borne.AjouterCarte(numeroJoueur, carte);
+    
+        main.remove(carte);
+    
+        if (!pioche.isEmpty()) {
+            Carte nouvelleCarte = pioche.remove(0);
+            main.add(nouvelleCarte);
+        }
     }
 
     public static String Pseudo()
