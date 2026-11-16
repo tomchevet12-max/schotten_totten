@@ -13,6 +13,7 @@ public class Borne{
     private List<Carte> cartesJ1;
     private List<Carte> cartesJ2;
 
+
     public Borne(int numero) {
         this.numero = numero;
         this.cartesJ1 = new ArrayList<>();
