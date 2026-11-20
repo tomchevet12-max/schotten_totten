@@ -52,7 +52,7 @@ public class Joueur{
     public static String Pseudo(int val)
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez votre pseudo J"+val+" : " );
+        System.out.print("Entrez votre pseudo J" +val+ " : " );
 
         return scanner.nextLine();
 

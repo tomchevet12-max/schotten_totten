@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Jeu {
 
+
     public static void main(String[] args) {
 
         List<Carte> pioche = Carte.Pioche();
@@ -29,39 +30,55 @@ public class Jeu {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bienvenue, vous êtes le joueur 1" + pseudoJ1);
+        System.out.println("Bienvenue" + pseudoJ1 + ", vous êtes le joueur 1");
         System.out.println("Voici votre main");
         Affichage.AfficherMain(mainJ1);
 
-        System.out.println("Bienvenue, vous êtes le joueur 2" + pseudoJ2);
+        System.out.println("Bienvenue" + pseudoJ2 + ", vous êtes le joueur 2 ");
         System.out.println("Voici votre main");
         Affichage.AfficherMain(mainJ2);
 
-
         System.out.println("Nombre de carte dans la pioche : " + pioche.size());
 
-        //1 tour de table
-    //     System.out.print("J1:Quelle carte voulez-vous poser ? ");
-    //     int choix_carte = scanner.nextInt();
+        while (true)
+        {
+            System.out.println("Tour de " + pseudoJ1);
+            Tour(joueurJ1, mainJ1, List_Bornes, pioche, scanner);
+    
+            System.out.println("Tour de " + pseudoJ2);
+            Tour(joueurJ2, mainJ2, List_Bornes, pioche, scanner);
 
-    //     if (choix_carte < 1 || choix_carte > mainJ1.size()) {
-    //         throw new IllegalArgumentException("Choix de carte invalide");
-    //     }
+        }
 
-    //     System.out.print("Dans quelle borne voulez-vous la jouer ? ");
-    //     int choix_borne = scanner.nextInt();
+        
 
-    //     if (choix_borne < 1 || choix_borne > List_Bornes.size()) {
-    //         throw new IllegalArgumentException("Choix de borne invalide");
-    //     }
-
-    //     Carte carteChoisie = main.get(choix_carte - 1);
-    //     Borne borneChoisie = List_Bornes.get(choix_borne - 1);
-
-    //     joueurJ1.PoserCarte(borneChoisie, carteChoisie, main, pioche);
-
-    //     borneChoisie.AfficherBorne();
-
-    //     System.out.println("Nombre de carte dans la pioche : " + pioche.size());
      }
+
+    public static void Tour(Joueur joueur, List<Carte> main, List<Borne> List_Bornes, List<Carte> pioche, Scanner scanner) {
+
+        Affichage.AfficherMain(main);
+    
+        System.out.print("Quelle carte voulez-vous poser ? ");
+        int choix_carte = scanner.nextInt();
+    
+        if (choix_carte < 1 || choix_carte > main.size()) {
+            throw new IllegalArgumentException("Choix de carte invalide");
+        }
+    
+        System.out.print("Dans quelle borne voulez-vous la jouer ? ");
+        int choix_borne = scanner.nextInt();
+    
+        if (choix_borne < 1 || choix_borne > List_Bornes.size()) {
+            throw new IllegalArgumentException("Choix de borne invalide");
+        }
+    
+        Carte carteChoisie = main.get(choix_carte - 1);
+        Borne borneChoisie = List_Bornes.get(choix_borne - 1);
+    
+        joueur.PoserCarte(borneChoisie, carteChoisie, main, pioche);
+    
+        borneChoisie.AfficherBorne();
+    
+        System.out.println("Nombre de cartes dans la pioche : " + pioche.size());
+    }
 }

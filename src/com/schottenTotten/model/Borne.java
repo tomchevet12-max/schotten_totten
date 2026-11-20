@@ -20,6 +20,14 @@ public class Borne{
         this.cartesJ2 = new ArrayList<>();
     }
 
+    public List<Carte> getCartesJ1() {
+        return cartesJ1;
+    }
+    
+    public List<Carte> getCartesJ2() {
+        return cartesJ2;
+    }
+
     public void AjouterCarte(int numeroJoueur, Carte carte)
     {
         if (numeroJoueur == 1 && cartesJ1.size()<3) {
